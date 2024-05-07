@@ -18,27 +18,27 @@ Step 6: Run your in the port number 3000.
 Step 1: Deploy the app into local and serve<br>
 Step 2: Create a hooks.json file and mention the stages that to be done and also update the secert & change the value as main or master<br>
 Step 3: Create a redeploy.sh and run the dependencies that need and git pull \n create the <br>
-Step 4: sudo nano /etc/systemd/system/webhook.service
-and paste this
+Step 4: sudo nano /etc/systemd/system/webhook.service<br>
+and paste this<br>
 
-[Unit]
-Description= Github Webhook
-Documentation=https://github.com/adnanh/webhook
-After=network.target
-StartLimitIntervalSec=0
+[Unit]<br>
+Description= Github Webhook<br>
+Documentation=https://github.com/adnanh/webhook<br>
+After=network.target<br>
+StartLimitIntervalSec=0<br>
 
-[Service]
-Type=simple
-User=ubuntu
-Restart=on-failure
-RestartSec=5
-ExecStart=/usr/local/bin/webhook -verbose -hotreload -hooks /var/www/html/webhooks/hooks.json -port 9000 -ip 0.0.0.0 -http-methods POST
+[Service]<br>
+Type=simple<br>
+User=ubuntu<br>
+Restart=on-failure<br>
+RestartSec=5<br>
+ExecStart=/usr/local/bin/webhook -verbose -hotreload -hooks /var/www/html/webhooks/hooks.json -port 9000 -ip 0.0.0.0 -http-methods POST<br>
 
-[Install]
-WantedBy=multi-user.target
+[Install]<br>
+WantedBy=multi-user.target<br>
 
-Step 5: sudo systemctl enable webhook.service
-sudo systemctl start webhook.service
-sudo systemctl status webhook.service
+Step 5: sudo systemctl enable webhook.service<br>
+sudo systemctl start webhook.service<br>
+sudo systemctl status webhook.service<br>
 
-Step 6: Create webhook in github and in post url: http://your-ip:9000(or)domain/hooks/{id} (that is mentioned in your hooks.json file)
+Step 6: Create webhook in github and in post url: http://your-ip:9000(or)domain/hooks/{id} (that is mentioned in your hooks.json file)<br>
