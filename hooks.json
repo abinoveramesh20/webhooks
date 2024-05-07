@@ -1,0 +1,32 @@
+[
+  {
+    "id": "redeploy-app",
+    "execute-command": "/var/www/html/webhooks/redeploy.sh",
+    "command-working-directory": "/var/www/html/webhooks",
+    "response-message": "Deployed...",
+    "trigger-rule": {
+      "and": [
+        {
+          "match": {
+            "type": "payload-hmac-sha256",
+            "secret": "12345",
+            "parameter": {
+              "source": "header",
+              "name": "X-Hub-Signature-256"
+            }
+          }
+        },
+        {
+          "match": {
+            "type": "value",
+            "value": "refs/heads/main",
+            "parameter": {
+              "source": "payload",
+              "name": "ref"
+            }
+          }
+        }
+      ]
+    }
+  }
+]
